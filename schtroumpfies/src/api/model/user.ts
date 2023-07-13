@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 const userSchema = mongoose.Schema({
   username: {
     type: String,
@@ -18,9 +20,11 @@ const userSchema = mongoose.Schema({
     type: String,
     enum: ['Guerrier', 'Alchimiste', 'Sorcier', 'Espions', 'Enchanteur'],
   },
-  creationDate: {
-    
+  joined: {
+    type: Date,
+    required: true,
+    default: Date.now
   }
-})
+});
 
 module.exports = mongoose.model('User', userSchema)

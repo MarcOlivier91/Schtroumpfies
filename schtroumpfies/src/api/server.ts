@@ -10,8 +10,8 @@ app.use(cors({ origin: true, credentials: true }))
 database.connection()
 app.use(express.json())
 
-const userRouter = require('./routes/users')
-app.use('/users', userRouter)
+const userRouter = require('./routes/user')
+app.use('/user', userRouter)
 
 app.listen(3000, () => console.log('Server started.'))
 
