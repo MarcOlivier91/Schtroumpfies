@@ -22,7 +22,6 @@ const createUser = async (req: Request, res: Response) => {
       message: 'SUCCESS : User created.'
     })
   } catch (e: any) {
-    // console.log(err.message)
     res.status(500).send(e.message)
   }
 }
@@ -42,9 +41,8 @@ const getUsers = async (req: Request, res: Response) => {
     })
     console.log('Request OK')
     res.json(users)
-  } catch (e) {
-    // console.log(e.message)
-    res.status(500).send("Error handling request")
+  } catch (e: any) {
+    res.status(500).send(e.message)
   }
 }
 
@@ -56,7 +54,7 @@ const getUsersById = async (req: Request, res: Response) => {
 
     if (!user) {
       res.status(404).json({
-        message: 'ERROR : User not found.'
+        message: 'ERROR : Cannot find user.'
       })
     }
     console.log('Request OK')
@@ -66,12 +64,53 @@ const getUsersById = async (req: Request, res: Response) => {
       email: user.email,
       joined: user.joined,
     })
-  } catch (e) {
-    // console.log(err.message)
-    res.status(500).send('Something went wrong...')
+  } catch (e: any) {
+    res.status(500).send(e.message)
+  }
+}
+
+const patchUser = async (req: Request, res: Response) => {
+  const filter = { _id: req.params.id }
+  const update = {
+    username: req.body.username,
+    email: req.body.email
+  }
+
+  try {
+    const user = await User.findByIdAndUpdate(filter, update)
+
+    if (!user) {
+      res.status(404).json({
+        message: 'ERROR : User not found.'
+      })
+    }
+    console.log('Request OK')
+    res.status(200).json(update)
+  } catch (e: any) {
+    console.log(e.message)
+    res.status(500).json(e.message)
+  }
+}
+
+
+const deleteUser = async (req: Request, res: Response) => {
+  const filter = { _id: req.params.id }
+
+  try {
+    const user = await User.findById(req.params.id)
+    if (!user) {
+      res.status(404).json({
+        message: 'ERROR : User not found.'
+      })
+    }
+    console.log('Request OK')
+    await User.findOneAndDelete(filter)
+    res.status(200).json({ message: 'SUCCESS : User deleted.' })
+  } catch (e: any) {
+    res.status(500).json(e.message)
   }
 }
 
 
 
-module.exports = { createUser, getUsers, getUsersById }
+module.exports = { createUser, getUsers, getUsersById, patchUser, deleteUser }

@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 const router = Router()
 const user = require('../model/user')
+const auth = require('../middleware/authentication')
 const userController = require('../controller/userController')
 
 // Getting all users
@@ -13,13 +14,9 @@ router.get('/:id', userController.getUsersById)
 router.post('/', userController.createUser)
 
 // Update a user
-router.patch('/users/:id', (req: Request, res: Response) => {
-  res.send('Later World')
-})
+router.patch('/:id', userController.patchUser)
 
 // Delete a user
-router.delete('/users/:id', (req: Request, res: Response) => {
-  res.send('Bye World')
-})
+router.delete('/:id', userController.deleteUser)
 
 module.exports = router;
