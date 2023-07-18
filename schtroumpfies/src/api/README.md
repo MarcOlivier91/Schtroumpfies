@@ -72,26 +72,24 @@ Finally, putting a password shorter than 8 characters will also result in a `500
 Using this, you are able to get the listing of every users using this endpoint. If the request is succesful, you will get a `200` status code and the server will return the list of created users :
 
 ```
-{
-  "id": "62c7f8d20e28158e87de8bd5",
-  "firstname": "jean",
-  "lastname": "pierre",
-  "username": "jean-pierre",
-  "email": "jean@pierrre.fr",
-  "createdAt": "2022-07-08T09:28:50.312Z",
-  "animesWatched": [],
-  "mangasRead": []
- },
- {
-  "id": "62c7fa590e28158e87de8bd9",
-  "firstname": "emmanuel",
-  "lastname": "macron",
-  "username": "manu",
-  "email": "enmarche@versledésespoir.fr",
-  "createdAt": "2022-07-08T09:35:21.613Z",
-  "animesWatched": [],
-  "mangasRead": []
-}
+	{
+		"_id": "64b55300621f722755d88ca2",
+		"username": "john cena",
+		"email": "marc@olivier.fr",
+		"joined": "2023-07-17T14:41:04.256Z"
+	},
+	{
+		"_id": "64b6373f67174d1aec6ef5c1",
+		"username": "jambon beurre",
+		"email": "jambon@beurre.fr",
+		"joined": "2023-07-18T06:54:55.290Z"
+	},
+	{
+		"_id": "64b65b10c37c19c90051a6a1",
+		"username": "nfrealmusic",
+		"email": "nf@realmusic.fr",
+		"joined": "2023-07-18T09:27:44.339Z"
+	}
 ```
 
 ### Getting users via id (Type : GET)
@@ -101,16 +99,12 @@ Using this, you are able to get the listing of every users using this endpoint. 
 It is also possible to retrive only one user's informations using their id number. Replace `{id}` in the url by the user you want to find. If the request is correct, it will result in a `200` status code and will return the user's information as a JSON format as follows :
 
 ```
-{
- "id": "62c7fa590e28158e87de8bd9",
- "firstname": "emmanuel",
- "lastname": "macron",
- "username": "manu",
- "email": "enmarche@versledésespoir.fr",
- "createdAt": "2022-07-08T09:35:21.613Z",
- "animesWatched": [],
- "mangasRead": []
-}
+	{
+		"_id": "64b55300621f722755d88ca2",
+		"username": "john cena",
+		"email": "marc@olivier.fr",
+		"joined": "2023-07-17T14:41:04.256Z"
+	},
 ```
 
 Putting an incorrect id or an id that doesn't exist will result in a `404` status code and will give you the following message : `ERROR : User not found.`
@@ -123,8 +117,6 @@ It is possible to update one user's specific informations. Replace `{id}` in the
 
 ```
 {
- "firstname": String,
- "lastname": String, 
  "username": String, // Must be unique
  "email": String,
  "password": String // Must be 8 characters long at least

@@ -41,7 +41,6 @@ const getUsers = async (req: Request, res: Response) => {
         _id: user.id,
         username: user.username,
         email: user.email,
-        password: user.password,
         joined: user.joined,
       }
     })
