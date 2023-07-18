@@ -4,7 +4,11 @@ const User = require('../model/user')
 
 const createUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body
-  console.log(password)
+
+  // Checking if form completed
+  if (!username || !email || !password ) {
+    res.status(400)
+  }
   const salt = await bcrypt.genSalt(15)
   const hash = await bcrypt.hash(req.body.password, salt)
 
@@ -15,12 +19,14 @@ const createUser = async (req: Request, res: Response) => {
       password: hash
     })
 
-    console.log('Request OK')
     await newUser.save()
     console.log(newUser)
     res.status(201).json({
+
       message: 'SUCCESS : User created.'
     })
+    console.log('Request OK')
+
   } catch (e: any) {
     res.status(500).send(e.message)
   }
@@ -32,38 +38,38 @@ const getUsers = async (req: Request, res: Response) => {
     let users = await User.find()
     users = users.map((user: any) => {
       return {
-        id: user.id,
+        _id: user.id,
         username: user.username,
         email: user.email,
         password: user.password,
         joined: user.joined,
       }
     })
-    console.log('Request OK')
     res.json(users)
+    console.log('Request OK')
   } catch (e: any) {
     res.status(500).send(e.message)
   }
 }
 
 const getUsersById = async (req: Request, res: Response) => {
-  const { id } = req.params
+  const { _id } = req.params
 
   try {
-    const user = await User.findById(id)
+    const user = await User.findById(_id)
 
     if (!user) {
       res.status(404).json({
         message: 'ERROR : Cannot find user.'
       })
     }
-    console.log('Request OK')
     res.json({
-      id: user.id,
+      _id: user.id,
       username: user.username,
       email: user.email,
       joined: user.joined,
     })
+    console.log('Request OK')
   } catch (e: any) {
     res.status(500).send(e.message)
   }
@@ -84,8 +90,8 @@ const patchUser = async (req: Request, res: Response) => {
         message: 'ERROR : User not found.'
       })
     }
-    console.log('Request OK')
     res.status(200).json(update)
+    console.log('Request OK')
   } catch (e: any) {
     console.log(e.message)
     res.status(500).json(e.message)
@@ -103,9 +109,9 @@ const deleteUser = async (req: Request, res: Response) => {
         message: 'ERROR : User not found.'
       })
     }
-    console.log('Request OK')
     await User.findOneAndDelete(filter)
     res.status(200).json({ message: 'SUCCESS : User deleted.' })
+    console.log('Request OK')
   } catch (e: any) {
     res.status(500).json(e.message)
   }
