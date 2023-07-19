@@ -10,13 +10,10 @@ const userController = require('../controller/userController')
 router.post('/login', (req: Request, res: Response, next:any) => {
   try {
     User.findOne({ username: req.body.username })
-
       .then(user => {
         if (!user) {
           return res.status(401).json({ message: 'Incorrect username or password' })
         }
-        console.log(req.body.password)
-        console.log(user.password)
         bcrypt.compare(req.body.password, user.password)
           .then(valid => {
             console.log(valid)
