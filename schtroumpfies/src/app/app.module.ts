@@ -6,7 +6,8 @@ import { LoginFormComponent } from './pages/login/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -15,12 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
     LoginFormComponent,
     RegisterFormComponent,
     HomeComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HttpClientXsrfModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

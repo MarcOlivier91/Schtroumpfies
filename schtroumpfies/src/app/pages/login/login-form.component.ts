@@ -25,7 +25,8 @@ export class LoginFormComponent implements OnInit{
     // call api todo
     this.wrongCredentials = false;
     this.sessionLogin.login(this.username, this.password).subscribe(result => {
-      this.router.navigate(['/'])
+      console.log(result);
+      this.router.navigate(['/dashboard'])
     }, error => {
       this.wrongCredentials = true;
     })
