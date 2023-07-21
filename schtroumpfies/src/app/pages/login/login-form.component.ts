@@ -20,6 +20,9 @@ export class LoginFormComponent implements OnInit{
   ngOnInit(): void {
 
   }
+  homepage(){
+    this.router.navigate(['/']);
+  }
 
   login(){
     // call api todo
