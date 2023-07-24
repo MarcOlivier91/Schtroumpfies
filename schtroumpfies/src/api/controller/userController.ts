@@ -32,7 +32,6 @@ const createUser = async (req: Request, res: Response) => {
   }
 }
 
-
 const getUsers = async (req: Request, res: Response) => {
   try {
     let users = await User.find()
@@ -75,10 +74,13 @@ const getUsersById = async (req: Request, res: Response) => {
 }
 
 const patchUser = async (req: Request, res: Response) => {
+  const salt = await bcrypt.genSalt(15)
+  const hash = await bcrypt.hash(req.body.password, salt)
   const filter = { _id: req.params.id }
   const update = {
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
+    password: hash
   }
 
   try {
