@@ -15,4 +15,8 @@ export class RegisterFormComponent {
   homepage(){
     this.router.navigate(['/']);
   }
+
+  goToLoginPage() {
+    this.router.navigate(['/login'])
+  }
 }

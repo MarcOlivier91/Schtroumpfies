@@ -7,6 +7,7 @@ import { RegisterFormComponent } from './pages/register/register-form.component'
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
@@ -24,6 +25,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     FormsModule,
     HttpClientModule,
     HttpClientXsrfModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
