@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionLoginService } from 'src/app/services/session-login/session-login.service';
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -14,10 +14,11 @@ export class LoginFormComponent implements OnInit{
   password = '';
   wrongCredentials = false;
 
-  form = this.fb.nonNullable.group({
+  loginForm = this.fb.nonNullable.group({
     username: ['', [Validators.required,]],
     password: ['', [Validators.required, Validators.minLength(8)]]
-  })
+  });
+  error = '';
 
   constructor (
     private sessionLogin: SessionLoginService,
@@ -29,10 +30,16 @@ export class LoginFormComponent implements OnInit{
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('SUBMIT: ', this.form.value);
-    const { username, password } = this.form.getRawValue();
-    this.authService.loginRequest(username, password).subscribe(result => {
-      console.log(result)
+    console.log('SUBMIT: ', this.loginForm.value);
+    const { username, password } = this.loginForm.getRawValue();
+    this.authService.loginRequest(username, password).subscribe({
+      next: (res) => {
+        console.log('LOGIN DONE', res)
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        this.error = "Login Failed. Please try again.";
+      }
     });
   }
 
@@ -50,8 +57,8 @@ export class LoginFormComponent implements OnInit{
     }, error => {
       this.wrongCredentials = true;
     }) */
-    console.log('SUBMIT: ', this.form.value);
-    const { username, password } = this.form.getRawValue();
+    console.log('SUBMIT: ', this.loginForm.value);
+    const { username, password } = this.loginForm.getRawValue();
     this.authService.loginRequest(username, password).subscribe();
   }
 
