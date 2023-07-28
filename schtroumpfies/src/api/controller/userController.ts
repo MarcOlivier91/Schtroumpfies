@@ -39,8 +39,9 @@ const getUsers = async (req: Request, res: Response) => {
       return {
         _id: user.id,
         username: user.username,
-        email: user.email,
-        joined: user.joined,
+        email: user.email,        
+        role: user.role,
+        joined: user.joined
       }
     })
     res.json(users)
@@ -66,6 +67,7 @@ const getUsersById = async (req: Request, res: Response) => {
       username: user.username,
       email: user.email,
       joined: user.joined,
+      role: user.role
     })
     console.log('Request OK')
   } catch (e: any) {
@@ -80,7 +82,8 @@ const patchUser = async (req: Request, res: Response) => {
   const update = {
     username: req.body.username,
     email: req.body.email,
-    password: hash
+    password: hash,
+    role: req.body.role
   }
 
   try {

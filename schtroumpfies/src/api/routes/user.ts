@@ -18,10 +18,8 @@ router.post('/login', (req: Request, res: Response, next:any) => {
           .then(valid => {
             console.log(valid)
             if (!valid) {
-              console.log('CONNEXION DENIED')
               return res.status(401).json({ message: 'Incorrect username or passowrd' })
             }
-            console.log('LOGGED IN')
             res.status(200).json({
               id: user.id,
               token: jwt.sign(
@@ -37,6 +35,9 @@ router.post('/login', (req: Request, res: Response, next:any) => {
   }
 })
 
+router.get('/logout', (req: Request, res: Response) => {
+  res.clearCookie('jwt')
+})
 
 // Getting all users
 router.get('/', userController.getUsers)
