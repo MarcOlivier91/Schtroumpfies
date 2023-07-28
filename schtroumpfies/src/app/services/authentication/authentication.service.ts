@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Router, UrlTree } from '@angular/router';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
-import { BehaviorSubject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 export const USER_STORAGE_KEY = 'APP_TOKEN';
 
@@ -39,6 +40,7 @@ export class AuthenticationService {
   }
  }
 
+// if succesful,
  registerRequest(username: string, email: string, password: string) {
   return this.http.post('http://localhost:3000/user/signup', {
     username,
@@ -51,6 +53,7 @@ export class AuthenticationService {
   )
  }
 
+// if successful, return the coockie from login request
  loginRequest(username: string, password:string) {
   return this.http.post('http://localhost:3000/user/login/', {
     username,
@@ -63,7 +66,7 @@ export class AuthenticationService {
       console.log(decoded)
       const userData: UserData = {
         token: res.token,
-        id: decoded.sub!,
+        id: decoded.sub,
       }
       this.user.next(userData)
       return userData;
@@ -71,16 +74,37 @@ export class AuthenticationService {
   )
  }
 
+// remove the json web token
  signOut() {
+  console.log(USER_STORAGE_KEY)
   localStorage.removeItem(USER_STORAGE_KEY);
+  console.log(USER_STORAGE_KEY)
   this.user.next(null);
  }
 
+// getting current user
  getCurrentUser() {
   return this.user.asObservable();
  }
 
+// getting current user's id
  getCurrentUserId() {
-  return this.user.getValue()!.id;
+  return this.user.getValue()?.id;
+ }
+
+//checking if user if logged in
+ isLoggenIn(): Observable<boolean | UrlTree> {
+  const router = inject(Router);
+
+  return this.getCurrentUser().pipe(
+    filter((user) => user !== undefined),
+    map((isAuthenticated) => {
+      if (isAuthenticated) {
+        return true;
+      } else {
+        return router.createUrlTree(['/login'])
+      }
+    })
+  )
  }
 }

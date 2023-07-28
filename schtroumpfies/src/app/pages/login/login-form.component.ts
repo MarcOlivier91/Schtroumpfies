@@ -30,7 +30,6 @@ export class LoginFormComponent implements OnInit{
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('SUBMIT: ', this.loginForm.value);
     const { username, password } = this.loginForm.getRawValue();
     this.authService.loginRequest(username, password).subscribe({
       next: (res) => {
@@ -45,21 +44,6 @@ export class LoginFormComponent implements OnInit{
 
   homepage(){
     this.router.navigate(['/']);
-  }
-
-  login(){
-    // call api todo
-    /*
-    this.wrongCredentials = false;
-    this.sessionLogin.login(this.username, this.password).subscribe(result => {
-      console.log(result);
-      this.router.navigate(['/dashboard'])
-    }, error => {
-      this.wrongCredentials = true;
-    }) */
-    console.log('SUBMIT: ', this.loginForm.value);
-    const { username, password } = this.loginForm.getRawValue();
-    this.authService.loginRequest(username, password).subscribe();
   }
 
   goToRegisterPage() {

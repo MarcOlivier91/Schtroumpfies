@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ChangeRoleComponent } from './pages/change-role/change-role.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     RegisterFormComponent,
     HomeComponent,
     DashboardComponent,
+    ChangeRoleComponent,
   ],
   imports: [
     BrowserModule,
