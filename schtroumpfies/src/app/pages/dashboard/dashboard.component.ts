@@ -30,8 +30,6 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-      //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-      //Add 'implements OnInit' to the class.
       this.getUserService.getUsers().subscribe(users => {
           console.log(users);
           this.users = users;
