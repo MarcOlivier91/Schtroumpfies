@@ -11,7 +11,7 @@
         class="focus:outline-none border w-full text-base px-2 py-1 focus:border-indigo-500">
       </div>
 
-      <div class="mt-4 mb-8">
+      <div class="mt-4 mb-4">
         <label class="block text-base mb-2">Mot de Passe</label>
         <input type="password"
         minLength="8"
@@ -24,7 +24,10 @@
     <p (click)="goToRegisterPage()" class="hover:text-neutral-600">Pas de compte ? Cliquez ici.</p>
     {{error}}
     </form>
-    <button type="button" class="bg-indigo-400 hover:bg-indigo-300 duration-200 font-semibold text-white rounded-md px-4 py-2 mb-4" (click)="homepage()">Retour à l'accueil</button>
+    <button
+    type="button"
+    class="bg-indigo-400 hover:bg-indigo-300 duration-200 font-semibold text-white rounded-md px-4 py-2 mb-4"
+    (click)="homepage()">Retour à l'accueil</button>
   </div>
 </div>
 
