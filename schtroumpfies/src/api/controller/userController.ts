@@ -28,6 +28,7 @@ const createUser = async (req: Request, res: Response) => {
     console.log('Request OK')
 
   } catch (e: any) {
+    console.log(e)
     res.status(500).send(e.message)
   }
 }
@@ -52,10 +53,10 @@ const getUsers = async (req: Request, res: Response) => {
 }
 
 const getUsersById = async (req: Request, res: Response) => {
-  const { id } = req.params
+  const { _id } = req.params
 
   try {
-    const user = await User.findById(id)
+    const user = await User.findById(_id)
 
     if (!user) {
       res.status(404).json({

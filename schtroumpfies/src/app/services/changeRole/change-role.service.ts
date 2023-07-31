@@ -21,25 +21,18 @@ export class ChangeRoleService {
 
 
   constructor(private http: HttpClient) {
-    this.loadUser()
-  }
-
-  public loadUser() {
-    const token = localStorage.getItem(USER_STORAGE_KEY)
-    if (token) {
-      const decoded: any = jwtDecode<JwtPayload>(token);
-      console.log(decoded)
-      const userData: UserData = {
-        token: token,
-        userId: decoded.sub!,
-      };
-      console.log(decoded.userId)
-      return decoded.userId;
-    }
   }
 
   changeRoleRequest(username: string, password: string, role: string) {
-    return this.http.patch(`http://localhost:3000/user/64c1277673f4937ada59527e`, { // TODO : Make the url dynamic for each user
+  const token = localStorage.getItem(USER_STORAGE_KEY)
+    if (token) {
+      const decoded: any = jwtDecode<JwtPayload>(token);
+      const userData: UserData = {
+        token: token,
+        userId: decoded.sub,
+      };
+
+    return this.http.patch(`http://localhost:3000/user/` + decoded.userId, { // TODO : Stop it from making constant request
     username,
     password,
     role,
@@ -48,5 +41,6 @@ export class ChangeRoleService {
         return this.changeRoleRequest(username, password, role)
       })
     )
+  }
   }
 }

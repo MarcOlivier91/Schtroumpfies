@@ -46,7 +46,7 @@ export class AuthenticationService {
     email,
     password
   }).pipe(
-    switchMap((res: any) => {
+    map((res: any) => {
       return this.registerRequest(username, email, password);
     })
   )
