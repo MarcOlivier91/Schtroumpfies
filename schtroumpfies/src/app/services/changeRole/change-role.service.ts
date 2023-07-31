@@ -39,7 +39,7 @@ export class ChangeRoleService {
   }
 
   changeRoleRequest(username: string, password: string, role: string) {
-    return this.http.patch(`http://localhost:3000/user/64c1277673f4937ada59527e`, {
+    return this.http.patch(`http://localhost:3000/user/64c1277673f4937ada59527e`, { // TODO : Make the url dynamic for each user
     username,
     password,
     role,
