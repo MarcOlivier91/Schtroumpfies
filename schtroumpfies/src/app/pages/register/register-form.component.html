@@ -1,6 +1,7 @@
-<div class="flex items-center justify-center">
-  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="items-center justify-center bg-slate-500 max-w-xl mx-4 px-4 shadow-md shadow-slate-600 rounded-md">
-    <h2 class="font-semibold text-2xl color-[fff]">Inscrivez-vous</h2>
+<div class="flex items-center justify-center bg-indigo-500 h-screen">
+  <div class="bg-white w-96 mx-4 px-4 shadow-md shadow-slate-600 rounded-md text-center">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="my-2">
+    <h2 class="font-semibold text-2xl">Inscrivez-vous</h2>
     <div>
       <div class="mt-4">
         <label class="block text-base mb-2">Nom d'utilisateur</label>
@@ -21,5 +22,5 @@
       {{error}}
     </div>
   </form>
+  <button type="button" class="bg-slate-400 font-semibold text-white rounded-md px-4 py-2 hover:bg-slate-500 duration-150" (click)="homepage()">Retour à l'accueil</button>
 </div>
-<button type="button" class="bg-slate-400 font-semibold text-white rounded-md px-4 py-2 hover:bg-slate-500 duration-150" (click)="homepage()">Retour à l'accueil</button>

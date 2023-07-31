@@ -1,10 +1,16 @@
-<header class="text-2xl font-semibold items-center justify-center flex">
-  <h2>Welcome to Schtroumpfies</h2>
+<header>
+  <!-- To be Completed-->
 </header>
 
 <body>
-  <div>
-    <button type="button" (click)="goToLoginPage()" class="bg-slate-400 font-semibold text-white rounded-md px-4 py-2 hover:bg-slate-500 duration-150">Se Connecter</button>
-    <button type="button" (click)="goToRegisterPage()" class="bg-slate-400 font-semibold text-white rounded-md px-4 py-2 hover:bg-slate-500 duration-150">S'inscrire</button>
+  <div id="container" class="m-auto bg-indigo-500 h-screen">
+    <div id="text" class="text-2xl font-semibold items-center justify-center flex text-white">
+      <h2>Bienvenue sur Schtroumpfies</h2>
+    </div>
+
+    <div id="buttons" class="flex justify-center items-center space-x-8 my-8">
+      <button type="button" (click)="goToLoginPage()" class="bg-white hover:bg-gray-100 duration-200 font-semibold text-indigo-500 rounded-md px-4 py-2">Se Connecter</button>
+      <button type="button" (click)="goToRegisterPage()" class="bg-white hover:bg-gray-100 duration-200 font-semibold text-indigo-500 rounded-md px-4 py-2">S'inscrire</button>
+    </div>
   </div>
 </body>
