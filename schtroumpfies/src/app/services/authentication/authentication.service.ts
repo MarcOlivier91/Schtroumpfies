@@ -17,7 +17,7 @@ export interface UserData {
 })
 export class AuthenticationService {
 
-  private user: BehaviorSubject<UserData | null | undefined> = new BehaviorSubject<UserData | null | undefined>(undefined);
+  public user: BehaviorSubject<UserData | null | undefined> = new BehaviorSubject<UserData | null | undefined>(undefined);
 
  constructor(private http: HttpClient) {
   this.loadUser();
@@ -29,7 +29,6 @@ export class AuthenticationService {
 
   if (token) {
     const decoded: any = jwtDecode<JwtPayload>(token);
-    console.log(decoded)
     const userData: UserData = {
       token: token,
       id: decoded.sub!,

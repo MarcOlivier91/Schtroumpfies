@@ -39,7 +39,7 @@ const getUsers = async (req: Request, res: Response) => {
       return {
         _id: user.id,
         username: user.username,
-        email: user.email,        
+        email: user.email,
         role: user.role,
         joined: user.joined
       }
@@ -52,10 +52,10 @@ const getUsers = async (req: Request, res: Response) => {
 }
 
 const getUsersById = async (req: Request, res: Response) => {
-  const { _id } = req.params
+  const { id } = req.params
 
   try {
-    const user = await User.findById(_id)
+    const user = await User.findById(id)
 
     if (!user) {
       res.status(404).json({

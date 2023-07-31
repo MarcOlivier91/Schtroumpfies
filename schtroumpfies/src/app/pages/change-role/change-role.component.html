@@ -2,7 +2,7 @@
 
 <p>Changer de rôle</p>
 <div class="flex items-center justify-center">
-  <form (ngSubmit)="onSubmit()" [formGroup]="roleForm" class="items-center justify-center bg-slate-500 max-w-xl mx-4 px-4 shadow-md shadow-slate-600 rounded-md text-white">
+  <form (ngSubmit)="onSubmit()" [formGroup]="roleForm" class="items-center justify-center bg-slate-500 max-w-xl mx-4 px-4 shadow-md shadow-slate-600 rounded-md">
     <h2 class="font-semibold text-2xl color-[fff]">Inscrivez-vous</h2>
     <div>
       <div class="mt-4">
@@ -17,11 +17,11 @@
 
       <div class="mt-4 mb-8">
         <label class="block text-base mb-2 font-semibold">Sélectionnez un rôle</label>
-        <select name="roles" id="roles">
+        <select name="roles" id="roles" formControlName="role">
           <option value="Guerrier">Guerrier</option>
           <option value="Alchimiste">Alchimiste</option>
           <option value="Sorcier">Sorcier</option>
-          <option value="Espions">Espions</option>
+          <option value="Espions">Espion</option>
           <option value="Enchanteur">Enchanteur</option>
         </select>
       </div>
