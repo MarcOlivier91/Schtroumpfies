@@ -103,6 +103,28 @@ const patchUser = async (req: Request, res: Response) => {
   }
 }
 
+const patchUserRole = async (req: Request, res: Response) => {
+  const filter = { _id: req.params.id }
+  const update = {
+    role: req.body.role
+  }
+
+  try {
+    const user = await User.findByIdAndUpdate(filter, update)
+
+    if (!user) {
+      res.status(404).json({
+        message: 'ERROR : User not found.'
+      })
+    }
+    res.status(200).json(update)
+    console.log('Request OK')
+  } catch (e: any) {
+    console.log(e.message)
+    res.status(500).json(e.message)
+  }
+}
+
 
 const deleteUser = async (req: Request, res: Response) => {
   const filter = { _id: req.params.id }
@@ -124,4 +146,4 @@ const deleteUser = async (req: Request, res: Response) => {
 
 
 
-module.exports = { createUser, getUsers, getUsersById, patchUser, deleteUser }
+module.exports = { createUser, getUsers, getUsersById, patchUser, patchUserRole, deleteUser }

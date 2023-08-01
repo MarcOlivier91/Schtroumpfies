@@ -51,6 +51,9 @@ router.post('/signup', userController.createUser)
 // Update a user
 router.patch('/:id', userController.patchUser)
 
+// Update a user's role
+router.patch('/role/:id', userController.patchUserRole)
+
 // Delete a user
 router.delete('/:id', userController.deleteUser)
 

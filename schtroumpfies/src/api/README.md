@@ -123,6 +123,18 @@ It is possible to update one user's specific informations. Replace `{id}` in the
 } 
 ```
 
+## UPDATING USER'S ROLE (Type: PATCH)
+
+``Route : localhost:3000/user/role/{id}``
+
+With this new route, you can update your role between 5 types, you must be logged in to proceed. Here is an example:
+
+```
+{
+ "role": String, //Choose between ['Guerrier', 'Alchimiste', 'Sorcier', 'Espions', 'Enchanteur']
+} 
+```
+
 A succesful request will result in a `200` status code and will return the updated user's informations in a JSON format. <br>
 If the id is incorrect of there's no user with the mentionned id, the server will return a `404` status error code with the following message : `ERROR : User not found.` <br>
 Attempting to put random characters and numbers as the id may result in a `500` error status code and will crash the server, so be careful.
