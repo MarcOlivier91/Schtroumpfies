@@ -28,6 +28,7 @@ import { ChangeRoleComponent } from './pages/change-role/change-role.component';
     HttpClientModule,
     HttpClientXsrfModule,
     ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

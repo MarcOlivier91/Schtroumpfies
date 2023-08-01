@@ -12,10 +12,10 @@
         </div>
       </div>
       <div class="ml-10 space-x-4">
-        <button (click)="changeRole()" class="inline-block rounded-md border border-transparent bg-white px-2 py-2 font-semibold">
+        <button (click)="changeRole()" class="inline-block rounded-md border border-transparent bg-white px-2 py-2 font-semibold hover:text-indigo-500 duration-200">
           Changer de Rôle
         </button>
-        <button (click)="logout()" class="inline-block rounded-md border border-transparent bg-white px-2 py-2 font-semibold">
+        <button (click)="logout()" class="inline-block rounded-md border border-transparent bg-white px-2 py-2 font-semibold hover:text-indigo-500 duration-200">
           Se Déconnecter
         </button>
       </div>
@@ -24,22 +24,22 @@
 </header>
 
 <main>
-  <div id="container-users" class="grid grid-cols-3 gap-4 mx-8 my-8" *ngIf="users">
-    <div *ngFor="let user of users">
+  <div id="container-users" class="grid grid-cols-3 gap-4 mx-8 my-8 lg:grid-cols-4" *ngIf="users">
+    <div *ngFor="let user of users" class="text-center capitalize">
 
-      <div id="user_card" class="bg-indigo-500">
+      <div id="user_card" class="bg-indigo-500 w-50 h-60">
         <div id="card_content" class="text-white font-semibold">
           {{ user.username }}
-          <img class="h-28 w-24"
+          <img class="h-28 w-24 items-center justify-center mx-auto my-2"
           src="../../../assets/smurf_PNG58.png"
           alt="Placeholder" />
           {{ user.role }}
         </div>
-        <button (click)="addFriend()" class="inline-block rounded-md border border-transparent bg-green-400 px-2 py-2 font-semibold text-white">
+        <button (click)="addFriend()" class="inline-block rounded-md border border-transparent bg-green-400 px-2 py-2 font-semibold text-white hover:bg-white duration-200 hover:text-green-700">
           Ajouter en ami
         </button>
       </div>
-      
+
     </div>
   </div>
 </main>

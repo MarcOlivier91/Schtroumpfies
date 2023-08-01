@@ -23,7 +23,7 @@ export class ChangeRoleService {
   constructor(private http: HttpClient) {
   }
 
-  changeRoleRequest(username: string, password: string, role: string) {
+  changeRoleRequest(role: string) {
   const token = localStorage.getItem(USER_STORAGE_KEY)
     if (token) {
       const decoded: any = jwtDecode<JwtPayload>(token);
@@ -32,13 +32,11 @@ export class ChangeRoleService {
         userId: decoded.sub,
       };
 
-    return this.http.patch(`http://localhost:3000/user/` + decoded.userId, { // TODO : Stop it from making constant request
-    username,
-    password,
+    return this.http.patch(`http://localhost:3000/user/role/` + decoded.userId, { // TODO : Stop it from making constant request
     role,
     }).pipe(
       switchMap((res: any) => {
-        return this.changeRoleRequest(username, password, role)
+        return this.changeRoleRequest(role)
       })
     )
   }

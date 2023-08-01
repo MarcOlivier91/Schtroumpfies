@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 
@@ -39,7 +39,7 @@ export class RegisterFormComponent {
     this.authService.registerRequest(username, email, password).subscribe({ // Throws a 500 while the request itself is OK (200)
       next: (res) => {
         console.log('REGISTER DONE', res)
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         this.error = "Register Failed. Please try again later.";

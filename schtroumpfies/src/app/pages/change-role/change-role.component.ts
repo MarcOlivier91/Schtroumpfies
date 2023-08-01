@@ -18,8 +18,6 @@ export interface UserInfos {
 export class ChangeRoleComponent {
 
   roleForm = this.fb.nonNullable.group({
-    username: ['', [Validators.required,]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
     role: ['', [Validators.required,]],
   });
 
@@ -36,8 +34,8 @@ export class ChangeRoleComponent {
 
   onSubmit() {
     console.log('SUBMIT: ', this.roleForm.value);
-    const { username, password, role } = this.roleForm.getRawValue();
-    this.roleService.changeRoleRequest(username, password, role).subscribe({
+    const { role } = this.roleForm.getRawValue();
+    this.roleService.changeRoleRequest(role).subscribe({ // TODO : Fix infinite requests
       next: (res) => {
         console.log('CHANGED ROLE', res)
         this.router.navigate(['/dashboard']);

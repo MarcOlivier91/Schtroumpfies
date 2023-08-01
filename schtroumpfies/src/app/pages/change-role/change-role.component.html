@@ -1,23 +1,11 @@
-<!-- TODO : Form to change role -->
-
-<p>Changer de rôle</p>
-<div class="flex items-center justify-center">
-  <form (ngSubmit)="onSubmit()" [formGroup]="roleForm" class="items-center justify-center bg-slate-500 max-w-xl mx-4 px-4 shadow-md shadow-slate-600 rounded-md">
-    <h2 class="font-semibold text-2xl color-[fff]">Inscrivez-vous</h2>
+<div class="flex items-center justify-center bg-indigo-500 h-screen">
+<div class="bg-white w-96 mx-4 px-4 shadow-md shadow-slate-600 rounded-md text-center">
+  <h2 class="font-semibold text-2xl">Changer de rôle</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="roleForm" class="my-2">
     <div>
-      <div class="mt-4">
-        <label class="block text-base mb-2 font-semibold">Nom d'utilisateur</label>
-        <input type="text" formControlName="username" placeholder="Nom d'utilisateur">
-      </div>
-
-      <div class="mt-4 mb-8">
-        <label class="block text-base mb-2 font-semibold">Mot de Passe</label>
-        <input type="password" minLength="8" formControlName="password" placeholder="Mot de passe">
-      </div>
-
       <div class="mt-4 mb-8">
         <label class="block text-base mb-2 font-semibold">Sélectionnez un rôle</label>
-        <select name="roles" id="roles" formControlName="role">
+        <select name="roles" id="roles" formControlName="role" class="focus:outline-none border w-full text-base px-2 py-1 focus:border-indigo-500">
           <option value="Guerrier">Guerrier</option>
           <option value="Alchimiste">Alchimiste</option>
           <option value="Sorcier">Sorcier</option>
@@ -25,9 +13,9 @@
           <option value="Enchanteur">Enchanteur</option>
         </select>
       </div>
-      <button class="bg-slate-300 rounded-md font-semibold px-2 py-2 text-white">Confirmer</button>
+      <button class="bg-indigo-400 text-white hover:bg-indigo-300 duration-200 rounded-md font-semibold px-2 py-2 items-center justify-center">Confirmer</button>
     </div>
   </form>
-<button (click)="goToDashboard()" class="inline-block rounded-md border border-transparent text-white bg-indigo-500 px-2 py-2 font-semibold">
+<button (click)="goToDashboard()" class="bg-indigo-400 text-white duration-200 rounded-md font-semibold px-4 py-2 items-center justify-center mb-4">
   Retour au Dashboard
 </button>

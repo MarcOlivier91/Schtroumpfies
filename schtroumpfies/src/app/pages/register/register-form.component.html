@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center bg-indigo-500 h-screen">
   <div class="bg-white w-96 mx-4 px-4 shadow-md shadow-slate-600 rounded-md text-center">
+  <h2 class="font-semibold text-2xl">Inscrivez-vous</h2>
   <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="my-2">
-    <h2 class="font-semibold text-2xl">Inscrivez-vous</h2>
     <div>
       <div class="mt-4">
         <label class="block text-base mb-2">Nom d'utilisateur</label>
@@ -29,7 +29,7 @@
         placeholder="Mot de passe"
         class="focus:outline-none border w-full text-base px-2 py-1 focus:border-indigo-500">
       </div>
-      <button type="button" class="bg-indigo-400 hover:bg-indigo-300 duration-200 rounded-md font-semibold px-2 py-2 items-center justify-center text-white ">S'inscrire</button>
+      <button type="submit" class="bg-indigo-400 hover:bg-indigo-300 duration-200 rounded-md font-semibold px-2 py-2 items-center justify-center text-white ">S'inscrire</button>
       <p (click)="goToLoginPage()" class="hover:text-neutral-600">Déjà inscrit ? Cliquez ici.</p>
       {{error}}
     </div>

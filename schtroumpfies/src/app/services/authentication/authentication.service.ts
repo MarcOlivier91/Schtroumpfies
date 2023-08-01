@@ -39,14 +39,13 @@ export class AuthenticationService {
   }
  }
 
-// if succesful,
- registerRequest(username: string, email: string, password: string) {
+registerRequest(username: string, email: string, password: string) {
   return this.http.post('http://localhost:3000/user/signup', {
     username,
     email,
     password
   }).pipe(
-    map((res: any) => {
+    switchMap((res: any) => {
       return this.registerRequest(username, email, password);
     })
   )
